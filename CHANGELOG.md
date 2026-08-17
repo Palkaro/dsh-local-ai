@@ -1,0 +1,17 @@
+# Changelog
+
+All notable changes to this project are documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+### Added
+
+- `ollama_list` / `ollama_show` / `ollama_pull` / `ollama_remove` tools plus a health check (process liveness and API responsiveness) over the Ollama HTTP API and the real subprocess seam.
+- `OllamaAdapter` registered under the `ollama` provider route, with configurable model mapping and temperature / max-tokens / stop translation.
+- `model_route` rules (task type via `purpose`, case-insensitive keywords, or `always`) that route requests to local models with automatic fallback to the cloud when the local route fails before producing content.
+- `/ollama` one-shot status command (models, disk usage, health, suggestions).
+- Display/log sanitization for endpoint addresses and local paths.
+- Five-language README, CI / compat / release workflows, and the full gate (typecheck, test, build, verify, pack).
