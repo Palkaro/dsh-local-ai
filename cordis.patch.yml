@@ -1,0 +1,44 @@
+# dsh-local-ai bundle patch: mount the local-model (Ollama) integration.
+#
+# Every key below is a Config field (Schemastery schema); invalid values fail
+# the profile load loudly. See README.md "Configuration" for the full table.
+# Off by default: the `route` list is empty, so no request is re-routed to a
+# local model until you configure at least one rule (or select the `ollama`
+# provider explicitly).
+- insert:
+    - id: dsh-local-ai
+      name: dsh-local-ai
+      config:
+        # Ollama HTTP API base URL; /api/* paths are appended by the plugin.
+        baseURL: http://127.0.0.1:11434
+        # Per-request HTTP timeout in milliseconds.
+        requestTimeoutMs: 30000
+        # Subprocess terminate grace (ms) for the health-check CLI probe.
+        graceMs: 15000
+        # Combined context capacity used when a model has no exact value.
+        defaultContextWindow: 8192
+        # Per-request output cap used when a model has no exact value.
+        maxTokens: 4096
+        # Default sampling temperature; omit to keep the provider default.
+        # temperature: 0.7
+        # Harness-visible -> Ollama model mappings. Each entry maps a name you
+        # select in the harness to an Ollama model id (defaults to the name).
+        models: []
+        # models:
+        #   - name: local
+        #     model: llama3.2
+        #     contextWindow: 4096
+        #     maxTokens: 2048
+        #     temperature: 0.7
+        # Routing rules (first match wins): route requests to a local model by
+        # task type (purpose), keyword (case-insensitive), or always. A rule
+        # needs at least one of purpose/keywords/always; an empty list means
+        # no automatic re-routing.
+        route: []
+        # route:
+        #   - model: local
+        #     keywords: ["confidential", "offline", "internal"]
+        #   - model: local
+        #     purpose: compaction
+        #   - model: local
+        #     always: true   # offline-first: route everything local
