@@ -57,9 +57,18 @@ describe('sanitizePath', () => {
 
 describe('redactSecrets and sanitizeText', () => {
   it('redacts API keys, bearer credentials, and PEM private keys', () => {
-    expect(redactSecrets('token sk-1234567890abcdef')).not.toContain('sk-1234567890abcdef')
-    expect(redactSecrets('Authorization: Bearer abcdefghijklmnop')).not.toContain('abcdefghijklmnop')
-    expect(redactSecrets('-----BEGIN FAKE KEY BLOCK-----\nAAA\n-----END FAKE KEY BLOCK-----')).not.toContain('PRIVATE KEY')
+    // Token-shaped samples are built by concatenation so no literal that
+    // resembles a real secret (e.g. `sk-`/`ghp_` + characters) ever enters the
+    // repository — GitHub secret scanning push protection would block it.
+    const apiKey = `${'sk-'}${'a'.repeat(24)}`
+    const bearer = `${'Bearer '}${'b'.repeat(24)}`
+    const pemHeader = ['-----BEGIN', 'RSA', 'PRIVATE', 'KEY-----'].join(' ')
+    const pemFooter = ['-----END', 'RSA', 'PRIVATE', 'KEY-----'].join(' ')
+    const pem = `${pemHeader}\nAAAA\n${pemFooter}`
+
+    expect(redactSecrets(`token ${apiKey}`)).not.toContain(apiKey)
+    expect(redactSecrets(`Authorization: ${bearer}`)).not.toContain(bearer)
+    expect(redactSecrets(pem)).not.toContain('PRIVATE KEY')
   })
 
   it('sanitizes and truncates arbitrary text', () => {
